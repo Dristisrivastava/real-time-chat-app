@@ -13,7 +13,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-const expressServer = app.listen(PORT, () => {
+const expressServer = app.listen(PORT, '0.0.0.0', () => {
   console.log(`listening on port ${PORT}`);
 });
 
@@ -27,10 +27,8 @@ const UsersState = {
 
 const io = new Server(expressServer, {
   cors: {
-    origin:
-      process.env.NODE_ENV === 'production'
-        ? false
-        : ['http://localhost:5500', 'http://127.0.0.1:5500'],
+    origin: process.env.NODE_ENV === 'production' ? false : '*',
+    methods: ['GET', 'POST'],
   },
 });
 
@@ -113,6 +111,7 @@ io.on('connection', (socket) => {
   socket.on('message', ({ name, text }) => {
     const room = getUser(socket.id)?.room;
     if (room) {
+      console.log(`Message received from ${name}: ${text}`);
       io.to(room).emit('message', buildMsg(name, text));
     }
   });
