@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PORT = process.env.PORT || 3500;
+const PORT = process.env.PORT || 10000;
 const ADMIN = 'Admin';
 
 const app = express();
@@ -27,8 +27,9 @@ const UsersState = {
 
 const io = new Server(expressServer, {
   cors: {
-    origin: '*', // Allow all frontend connections
-    methods: ['GET', 'POST'],
+    origin: "https://real-time-chat-app-jcfp.onrender.com", // Replace with your actual frontend URL
+    methods: ["GET", "POST"],
+    credentials: true, // Allow cookies & authentication headers
   },
   allowEIO3: true, // Ensure compatibility with older clients
 });

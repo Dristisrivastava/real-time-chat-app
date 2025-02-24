@@ -1,4 +1,7 @@
-const socket = io('https://your-render-app.onrender.com'); // Replace with your actual Render URL
+const socket = io("https://real-time-chat-app-jcfp.onrender.com", {
+  transports: ["websocket", "polling"],
+});
+
 
 const msgInput = document.querySelector('#message');
 const nameInput = document.querySelector('#name');
