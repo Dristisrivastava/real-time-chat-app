@@ -32,6 +32,8 @@ const io = new Server(expressServer, {
   },
 });
 
+const socketClientScript = "const socket = io('https://your-render-app.onrender.com');";
+
 io.on('connection', (socket) => {
   console.log(`User ${socket.id} connected`);
 
