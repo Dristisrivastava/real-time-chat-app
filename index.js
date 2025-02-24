@@ -27,12 +27,11 @@ const UsersState = {
 
 const io = new Server(expressServer, {
   cors: {
-    origin: process.env.NODE_ENV === 'production' ? false : '*',
+    origin: '*', // Allow all frontend connections
     methods: ['GET', 'POST'],
   },
+  allowEIO3: true, // Ensure compatibility with older clients
 });
-
-const socketClientScript = "const socket = io('https://your-render-app.onrender.com');";
 
 io.on('connection', (socket) => {
   console.log(`User ${socket.id} connected`);

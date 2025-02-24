@@ -1,4 +1,4 @@
-const socket = io('ws://localhost:3500');
+const socket = io('https://your-render-app.onrender.com'); // Replace with your actual Render URL
 
 const msgInput = document.querySelector('#message');
 const nameInput = document.querySelector('#name');
